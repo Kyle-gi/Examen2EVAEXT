@@ -1,0 +1,43 @@
+[
+  {
+    "isbn": "978-84-204-8266-3",
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "editorial": "Alfaguara",
+    "ejemplaresTotales": 5,
+    "ejemplaresDisponibles": 3
+  },
+  {
+    "isbn": "978-84-666-5195-6",
+    "titulo": "La sombra del viento",
+    "autor": "Carlos Ruiz Zafón",
+    "editorial": "Planeta",
+    "ejemplaresTotales": 4,
+    "ejemplaresDisponibles": 4
+  },
+  {
+    "isbn": "978-84-376-0494-7",
+    "titulo": "El Quijote",
+    "autor": "Miguel de Cervantes",
+    "editorial": "Cátedra",
+    "ejemplaresTotales": 6,
+    "ejemplaresDisponibles": 5
+  },
+  {
+    "isbn": "978-84-204-7948-9",
+    "titulo": "Rayuela",
+    "autor": "Julio Cortázar",
+    "editorial": "Alfaguara",
+    "ejemplaresTotales": 3,
+    "ejemplaresDisponibles": 2
+  },
+  {
+    "isbn": "978-84-339-7238-6",
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "editorial": "Debolsillo",
+    "ejemplaresTotales": 5,
+    "ejemplaresDisponibles": 5
+  }
+]
+

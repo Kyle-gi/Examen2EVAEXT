@@ -1,0 +1,30 @@
+[
+  {
+    "identificador": "001",
+    "isbnLibro": "978-84-204-8266-3",
+    "numeroSocio": "001",
+    "fechaPrestamo": "2026-05-10",
+    "fechaDevolucionPrevista": "2026-05-24",
+    "fechaDevolucionReal": null,
+    "activo": true
+  },
+  {
+    "identificador": "002",
+    "isbnLibro": "978-84-376-0494-7",
+    "numeroSocio": "002",
+    "fechaPrestamo": "2026-05-15",
+    "fechaDevolucionPrevista": "2026-05-29",
+    "fechaDevolucionReal": null,
+    "activo": true
+  },
+  {
+    "identificador": "003",
+    "isbnLibro": "978-84-204-7948-9",
+    "numeroSocio": "003",
+    "fechaPrestamo": "2026-05-05",
+    "fechaDevolucionPrevista": "2026-05-19",
+    "fechaDevolucionReal": "2026-05-18",
+    "activo": false
+  }
+]
+

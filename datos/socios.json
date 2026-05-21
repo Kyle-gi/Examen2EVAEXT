@@ -1,0 +1,24 @@
+[
+  {
+    "numeroSocio": "001",
+    "apellidos": "García Fernández",
+    "nombre": "María",
+    "direccion": "Calle Mayor 45, Madrid",
+    "telefono": "912-345-678"
+  },
+  {
+    "numeroSocio": "002",
+    "apellidos": "Rodríguez López",
+    "nombre": "Antonio",
+    "direccion": "Avenida de la Libertad 23, Barcelona",
+    "telefono": "934-567-890"
+  },
+  {
+    "numeroSocio": "003",
+    "apellidos": "Martín Sánchez",
+    "nombre": "Carmen",
+    "direccion": "Plaza España 12, Valencia",
+    "telefono": "963-789-012"
+  }
+]
+
