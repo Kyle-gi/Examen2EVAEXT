@@ -1,14 +1,19 @@
 package org.biblioteca.negocio;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.biblioteca.entidades.Socio;
 import org.biblioteca.repositorio.AlmacenSocios;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@ApplicationScoped
 public class GestionSocios implements GestionSociosImpl {
     private final AlmacenSocios almacen;
 
+    @Inject
     public GestionSocios(AlmacenSocios almacenSocios) {
         this.almacen = almacenSocios;
     }

@@ -7,6 +7,8 @@ import org.biblioteca.negocio.GestionSocios;
 import org.biblioteca.repositorio.AlmacenLibros;
 import org.biblioteca.repositorio.AlmacenPrestamos;
 import org.biblioteca.repositorio.AlmacenSocios;
+import org.jboss.weld.environment.se.Weld;
+import org.jboss.weld.environment.se.WeldContainer;
 
 import java.util.Scanner;
 
@@ -26,6 +28,10 @@ public class Aplicacion {
     private static final MenuPrincipal menu = new MenuPrincipal(lector, gestionLibros, gestionSocios, gestionPrestamos);
 
     public static void main(String[] args) {
+
+        WeldContainer container = new Weld().initialize();
+        MenuPrincipal menuPrincipal = container.select(MenuPrincipal.class).get();
+
         boolean continuar = true;
         while (continuar) {
             System.out.println("\n╔════════════════════════════════════════╗");

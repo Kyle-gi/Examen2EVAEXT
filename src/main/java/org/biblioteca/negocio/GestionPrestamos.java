@@ -1,5 +1,7 @@
 package org.biblioteca.negocio;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.biblioteca.entidades.Libro;
 import org.biblioteca.entidades.Prestamo;
 import org.biblioteca.entidades.Socio;
@@ -11,11 +13,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class GestionPrestamos implements GestionPrestamosImpl {
     private final AlmacenPrestamos almacenPrestamos;
     private final AlmacenLibros almacenLibros;
     private final AlmacenSocios almacenSocios;
 
+    @Inject
     public GestionPrestamos(AlmacenPrestamos almacenPrestamos, AlmacenLibros almacenLibros,  AlmacenSocios almacenSocios) {
         this.almacenPrestamos = almacenPrestamos;
         this.almacenLibros = almacenLibros;

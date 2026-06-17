@@ -1,6 +1,8 @@
 package org.biblioteca.repositorio;
 
 import com.google.gson.reflect.TypeToken;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.biblioteca.entidades.Socio;
 import org.biblioteca.herramientas.JsonUtil;
 
@@ -12,11 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class AlmacenSocios implements AlmacenSociosImpl {
     private final Path rutaArchivo;
     private final Type tipoListaSocios = new TypeToken<List<Socio>>(){}.getType();
     private List<Socio> listaSocios = new ArrayList<>();
 
+    @Inject
     public AlmacenSocios() {
         this.rutaArchivo = Path.of("datos", "socios.json");
         leerDesdeArchivo();
