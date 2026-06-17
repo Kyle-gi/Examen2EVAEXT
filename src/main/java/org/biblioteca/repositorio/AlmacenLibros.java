@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AlmacenLibros {
+public class AlmacenLibros implements AlmacenLibrosImpl {
     private final Path rutaArchivo;
     private final Type tipoListaLibros = new TypeToken<List<Libro>>(){}.getType();
     private List<Libro> listaLibros = new ArrayList<>();
@@ -22,7 +22,8 @@ public class AlmacenLibros {
         leerDesdeArchivo();
     }
 
-    private void leerDesdeArchivo() {
+    @Override
+    public void leerDesdeArchivo() {
         try {
             if (Files.notExists(rutaArchivo.getParent())) {
                 Files.createDirectories(rutaArchivo.getParent());
@@ -40,7 +41,8 @@ public class AlmacenLibros {
         }
     }
 
-    private void escribirEnArchivo() {
+    @Override
+    public void escribirEnArchivo() {
         try {
             String json = JsonUtil.obtenerInstancia().toJson(listaLibros, tipoListaLibros);
             Files.writeString(rutaArchivo, json);
@@ -49,6 +51,7 @@ public class AlmacenLibros {
         }
     }
 
+    @Override
     public List<Libro> consultarTodos() {
         leerDesdeArchivo();
         List<Libro> copia = new ArrayList<>();
@@ -58,6 +61,7 @@ public class AlmacenLibros {
         return copia;
     }
 
+    @Override
     public Optional<Libro> consultarPorIsbn(String isbn) {
         leerDesdeArchivo();
         for (Libro l : listaLibros) {
@@ -68,6 +72,7 @@ public class AlmacenLibros {
         return Optional.empty();
     }
 
+    @Override
     public boolean guardar(Libro libro) {
         leerDesdeArchivo();
         Optional<Libro> existente = consultarPorIsbn(libro.getIsbn());
@@ -79,6 +84,7 @@ public class AlmacenLibros {
         return true;
     }
 
+    @Override
     public boolean borrar(String isbn) {
         leerDesdeArchivo();
         boolean eliminado = false;
@@ -95,6 +101,7 @@ public class AlmacenLibros {
         return eliminado;
     }
 
+    @Override
     public void actualizar(Libro libro) {
         leerDesdeArchivo();
         for (int indice = 0; indice < listaLibros.size(); indice++) {

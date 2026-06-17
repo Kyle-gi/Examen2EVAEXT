@@ -1,12 +1,29 @@
 package org.biblioteca;
 
 import org.biblioteca.interfaz.MenuPrincipal;
+import org.biblioteca.negocio.GestionLibros;
+import org.biblioteca.negocio.GestionPrestamos;
+import org.biblioteca.negocio.GestionSocios;
+import org.biblioteca.repositorio.AlmacenLibros;
+import org.biblioteca.repositorio.AlmacenPrestamos;
+import org.biblioteca.repositorio.AlmacenSocios;
 
 import java.util.Scanner;
 
 public class Aplicacion {
     private static final Scanner lector = new Scanner(System.in);
-    private static final MenuPrincipal menu = new MenuPrincipal(lector);
+
+    private static final AlmacenLibros almacenLibros = new AlmacenLibros();
+    private static final AlmacenPrestamos almacenPrestamos = new AlmacenPrestamos();
+    private static final AlmacenSocios  almacenSocios = new AlmacenSocios();
+
+
+    private static final GestionSocios  gestionSocios = new GestionSocios(almacenSocios);
+    private static final GestionLibros gestionLibros = new GestionLibros(almacenLibros);
+    private static final GestionPrestamos gestionPrestamos = new GestionPrestamos(almacenPrestamos, almacenLibros, almacenSocios);
+
+
+    private static final MenuPrincipal menu = new MenuPrincipal(lector, gestionLibros, gestionSocios, gestionPrestamos);
 
     public static void main(String[] args) {
         boolean continuar = true;

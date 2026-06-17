@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AlmacenSocios {
+public class AlmacenSocios implements AlmacenSociosImpl {
     private final Path rutaArchivo;
     private final Type tipoListaSocios = new TypeToken<List<Socio>>(){}.getType();
     private List<Socio> listaSocios = new ArrayList<>();
@@ -22,7 +22,8 @@ public class AlmacenSocios {
         leerDesdeArchivo();
     }
 
-    private void leerDesdeArchivo() {
+    @Override
+    public void leerDesdeArchivo() {
         try {
             if (Files.notExists(rutaArchivo.getParent())) {
                 Files.createDirectories(rutaArchivo.getParent());
@@ -40,7 +41,8 @@ public class AlmacenSocios {
         }
     }
 
-    private void escribirEnArchivo() {
+    @Override
+    public void escribirEnArchivo() {
         try {
             String json = JsonUtil.obtenerInstancia().toJson(listaSocios, tipoListaSocios);
             Files.writeString(rutaArchivo, json);
@@ -49,6 +51,7 @@ public class AlmacenSocios {
         }
     }
 
+    @Override
     public List<Socio> consultarTodos() {
         leerDesdeArchivo();
         List<Socio> copia = new ArrayList<>();
@@ -58,6 +61,7 @@ public class AlmacenSocios {
         return copia;
     }
 
+    @Override
     public Optional<Socio> consultarPorNumero(String numeroSocio) {
         leerDesdeArchivo();
         for (Socio s : listaSocios) {
@@ -68,6 +72,7 @@ public class AlmacenSocios {
         return Optional.empty();
     }
 
+    @Override
     public boolean guardar(Socio socio) {
         leerDesdeArchivo();
         Optional<Socio> existente = consultarPorNumero(socio.getNumeroSocio());
@@ -79,6 +84,7 @@ public class AlmacenSocios {
         return true;
     }
 
+    @Override
     public boolean borrar(String numeroSocio) {
         leerDesdeArchivo();
         boolean eliminado = false;

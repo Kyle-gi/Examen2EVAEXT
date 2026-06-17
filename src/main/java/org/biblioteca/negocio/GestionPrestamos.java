@@ -11,25 +11,28 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class GestionPrestamos {
+public class GestionPrestamos implements GestionPrestamosImpl {
     private final AlmacenPrestamos almacenPrestamos;
     private final AlmacenLibros almacenLibros;
     private final AlmacenSocios almacenSocios;
 
-    public GestionPrestamos() {
-        this.almacenPrestamos = new AlmacenPrestamos();
-        this.almacenLibros = new AlmacenLibros();
-        this.almacenSocios = new AlmacenSocios();
+    public GestionPrestamos(AlmacenPrestamos almacenPrestamos, AlmacenLibros almacenLibros,  AlmacenSocios almacenSocios) {
+        this.almacenPrestamos = almacenPrestamos;
+        this.almacenLibros = almacenLibros;
+        this.almacenSocios = almacenSocios;
     }
 
+    @Override
     public List<Prestamo> listarPrestamos() {
         return almacenPrestamos.consultarTodos();
     }
 
+    @Override
     public Optional<Prestamo> buscarPrestamo(String identificador) {
         return almacenPrestamos.consultarPorId(identificador);
     }
 
+    @Override
     public boolean realizarPrestamo(Prestamo prestamo) {
         if (prestamo.getIdentificador() == null || prestamo.getIdentificador().isBlank()) {
             return false;
@@ -57,6 +60,7 @@ public class GestionPrestamos {
         return almacenPrestamos.guardar(prestamo);
     }
 
+    @Override
     public boolean devolverLibro(String identificador) {
         Optional<Prestamo> prestamoOpt = almacenPrestamos.consultarPorId(identificador);
         if (prestamoOpt.isEmpty()) {

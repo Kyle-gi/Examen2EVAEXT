@@ -6,21 +6,24 @@ import org.biblioteca.repositorio.AlmacenLibros;
 import java.util.List;
 import java.util.Optional;
 
-public class GestionLibros {
+public class GestionLibros implements GestionLibrosImpl {
     private final AlmacenLibros almacen;
 
-    public GestionLibros() {
-        this.almacen = new AlmacenLibros();
+    public GestionLibros(AlmacenLibros almacenLibros) {
+        this.almacen = almacenLibros;
     }
 
+    @Override
     public List<Libro> listarLibros() {
         return almacen.consultarTodos();
     }
 
+    @Override
     public Optional<Libro> buscarLibro(String isbn) {
         return almacen.consultarPorIsbn(isbn);
     }
 
+    @Override
     public boolean añadirLibro(Libro libro) {
         if (libro.getIsbn() == null || libro.getIsbn().isBlank()) {
             return false;
@@ -34,10 +37,12 @@ public class GestionLibros {
         return almacen.guardar(libro);
     }
 
+    @Override
     public boolean eliminarLibro(String isbn) {
         return almacen.borrar(isbn);
     }
 
+    @Override
     public void modificarLibro(Libro libro) {
         almacen.actualizar(libro);
     }

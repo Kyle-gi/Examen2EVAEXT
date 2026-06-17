@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AlmacenPrestamos {
+public class AlmacenPrestamos implements AlmacenPrestamosImpl {
     private final Path rutaArchivo;
     private final Type tipoListaPrestamos = new TypeToken<List<Prestamo>>(){}.getType();
     private List<Prestamo> listaPrestamos = new ArrayList<>();
@@ -22,7 +22,8 @@ public class AlmacenPrestamos {
         leerDesdeArchivo();
     }
 
-    private void leerDesdeArchivo() {
+    @Override
+    public void leerDesdeArchivo() {
         try {
             if (Files.notExists(rutaArchivo.getParent())) {
                 Files.createDirectories(rutaArchivo.getParent());
@@ -40,7 +41,8 @@ public class AlmacenPrestamos {
         }
     }
 
-    private void escribirEnArchivo() {
+    @Override
+    public void escribirEnArchivo() {
         try {
             String json = JsonUtil.obtenerInstancia().toJson(listaPrestamos, tipoListaPrestamos);
             Files.writeString(rutaArchivo, json);
@@ -49,6 +51,7 @@ public class AlmacenPrestamos {
         }
     }
 
+    @Override
     public List<Prestamo> consultarTodos() {
         leerDesdeArchivo();
         List<Prestamo> copia = new ArrayList<>();
@@ -58,6 +61,7 @@ public class AlmacenPrestamos {
         return copia;
     }
 
+    @Override
     public Optional<Prestamo> consultarPorId(String identificador) {
         leerDesdeArchivo();
         for (Prestamo p : listaPrestamos) {
@@ -68,6 +72,7 @@ public class AlmacenPrestamos {
         return Optional.empty();
     }
 
+    @Override
     public boolean guardar(Prestamo prestamo) {
         leerDesdeArchivo();
         Optional<Prestamo> existente = consultarPorId(prestamo.getIdentificador());
@@ -79,6 +84,7 @@ public class AlmacenPrestamos {
         return true;
     }
 
+    @Override
     public boolean borrar(String identificador) {
         leerDesdeArchivo();
         boolean eliminado = false;
@@ -95,6 +101,7 @@ public class AlmacenPrestamos {
         return eliminado;
     }
 
+    @Override
     public void actualizar(Prestamo prestamo) {
         leerDesdeArchivo();
         for (int indice = 0; indice < listaPrestamos.size(); indice++) {

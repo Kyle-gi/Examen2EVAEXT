@@ -18,11 +18,11 @@ public class MenuPrincipal {
     private final GestionSocios gestionSocios;
     private final GestionPrestamos gestionPrestamos;
 
-    public MenuPrincipal(Scanner lector) {
+    public MenuPrincipal(Scanner lector, GestionLibros gestionLibros, GestionSocios gestionSocios,  GestionPrestamos gestionPrestamos) {
         this.lector = lector;
-        this.gestionLibros = new GestionLibros();
-        this.gestionSocios = new GestionSocios();
-        this.gestionPrestamos = new GestionPrestamos();
+        this.gestionLibros = gestionLibros;
+        this.gestionSocios = gestionSocios;
+        this.gestionPrestamos = gestionPrestamos;
     }
 
     public void mostrarMenuLibros() {
